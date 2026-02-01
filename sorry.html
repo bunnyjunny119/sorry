@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry, Bhumika</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #fff5f7 50%, #f5f0ff 100%);
+            color: #4a4a4a;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 30px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+        
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: #d4517d;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #8b7d9e;
+            font-weight: 300;
+            font-style: italic;
+        }
+        
+        section {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(212, 81, 125, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 1s ease-out forwards;
+        }
+        
+        section:nth-child(2) { animation-delay: 0.3s; }
+        section:nth-child(3) { animation-delay: 0.5s; }
+        section:nth-child(4) { animation-delay: 0.7s; }
+        
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: #d4517d;
+            margin-bottom: 25px;
+            font-weight: 400;
+            border-bottom: 2px solid #ffd4e5;
+            padding-bottom: 10px;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #555;
+        }
+        
+        .highlight {
+            color: #d4517d;
+            font-weight: 500;
+        }
+        
+        .reasons-list, .promises-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .reasons-list li, .promises-list li {
+            padding: 15px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .reasons-list li::before {
+            content: "♡";
+            position: absolute;
+            left: 0;
+            color: #d4517d;
+            font-size: 1.3rem;
+        }
+        
+        .promises-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #9b7db8;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        .button-container {
+            text-align: center;
+            margin-top: 50px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1s forwards;
+        }
+        
+        .talk-button {
+            background: linear-gradient(135deg, #d4517d 0%, #c74875 100%);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            box-shadow: 0 8px 25px rgba(212, 81, 125, 0.3);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+        
+        .talk-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(212, 81, 125, 0.4);
+        }
+        
+        .talk-button:active {
+            transform: translateY(-1px);
+        }
+        
+        .hidden-message {
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            border-left: 4px solid #d4517d;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.6s ease;
+        }
+        
+        .hidden-message.show {
+            opacity: 1;
+            max-height: 200px;
+            margin-top: 30px;
+        }
+        
+        .hidden-message p {
+            margin: 0;
+            color: #d4517d;
+            font-size: 1.1rem;
+            font-style: italic;
+            text-align: center;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: #8b7d9e;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1.2s forwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .heart-decoration {
+            position: fixed;
+            font-size: 2rem;
+            color: rgba(212, 81, 125, 0.15);
+            pointer-events: none;
+            animation: float 8s infinite ease-in-out;
+            z-index: -1;
+        }
+        
+        .heart-decoration:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .heart-decoration:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        .heart-decoration:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+            
+            section {
+                padding: 30px 25px;
+            }
+            
+            p, .reasons-list li, .promises-list li {
+                font-size: 1rem;
+            }
+            
+            .talk-button {
+                padding: 15px 35px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-decoration">❤</div>
+    <div class="heart-decoration">❤</div>
+    <div class="heart-decoration">❤</div>
+    
+    <div class="container">
+        <header>
+            <h1>I'm Sorry, Bhumika ❤️</h1>
+            <p class="subtitle">A message from my heart</p>
+        </header>
+        
+        <section>
+            <h2>My Heartfelt Apology</h2>
+            <p>Dear <span class="highlight">Bhumika</span> 🥺,</p>
+            <p>I want to start by saying that I'm truly sorry. I made a mistake, and there's no excuse for it. I know I hurt you, and that's something I deeply regret. You deserve so much better than what I gave you in that moment.</p>
+            <p><span class="highlight">Baby</span>, I've been thinking about everything, and I realize now how my actions affected you. I wasn't being the partner you deserve. I want you to know that I hear you, I see your pain, and I take full responsibility for what happened.</p>
+            <p>I'm not asking you to forget or to pretend this didn't happen. I'm asking you to let me show you, through my actions, that I'm committed to being better. To listening more. To understanding your needs. To growing alongside you.</p>
+            <p><span class="highlight">Puttu</span>, you mean everything to me, and I never want to be the reason for your tears again. I'm learning from this, and I promise to do better, not just with words, but with everything I do moving forward.</p>
+        </section>
+
+        <section>
+            <h2>Why You Mean Everything to Me 😭</h2>
+            <ul class="reasons-list">
+                <li>You see me for who I truly am, and you still choose to love me every single day.</li>
+                <li>Your smile has the power to turn my worst days into something beautiful.</li>
+                <li>You challenge me to be a better person, and you believe in me even when I don't believe in myself.</li>
+                <li><span class="highlight">Baby</span>, your strength inspires me.</li>
+                <li>The way you care for the people you love shows me what it means to have a beautiful heart.</li>
+                <li>You've created a safe space in my life where I can be vulnerable, authentic, and completely myself.</li>
+                <li><span class="highlight">My Love</span>, every moment with you reminds me that I found someone truly extraordinary.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>What I Promise You 🤝</h2>
+            <ul class="promises-list">
+                <li><strong>Respect:</strong> I promise to always respect your feelings, your boundaries, and your voice. You deserve to be heard and valued in every conversation.</li>
+                <li><strong>Communication:</strong> I will work on expressing myself better and listening to you with my full attention. No more shutting down or avoiding difficult conversations.</li>
+                <li><strong>Effort:</strong> Love is an action, not just a feeling. I promise to show up for you consistently, to put in the work, and to never take you for granted.</li>
+                <li><strong>Growth:</strong> I'm committed to learning from my mistakes and becoming the partner you deserve. This isn't just about today, it's about who I want to be for you every day.</li>
+                <li><strong>Patience:</strong> I know trust takes time to rebuild. I'm willing to be patient and to prove myself through my actions, not just my words.</li>
+            </ul>
+        </section>
+
+        <div class="button-container">
+            <button class="talk-button" id="talkButton">Can we talk? plsssssss 🥹</button>
+            <div class="hidden-message" id="hiddenMessage">
+                <p>Pls bhumika jldi jldi ajo na🥺 sorry baby😭</p>
+            </div>
+        </div>
+
+        <footer>
+            With all my love and a sincere heart - your culprit.
+        </footer>
+    </div>
+
+    <script>
+        const talkButton = document.getElementById('talkButton');
+        const hiddenMessage = document.getElementById('hiddenMessage');
+        
+        talkButton.addEventListener('click', function() {
+            hiddenMessage.classList.add('show');
+            talkButton.style.opacity = '0.7';
+            talkButton.style.cursor = 'default';
+            talkButton.disabled = true;
+        });
+    </script>
+</body>
+</html>
